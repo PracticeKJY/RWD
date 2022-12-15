@@ -5,49 +5,174 @@
 @import url(./base.css);
 
 
-/* 미디어 query 없이 선언하는 것 = 공통 스타일 */
-/* cascade 순서 yellow->green->blue.  */
-/* 특정구간을 지정해서, 중간범위를 정해줌으로써 계속 덮어씀으로 인한 성능 저하를 보수함. */
-/* cascade 순서를 잘 파악하고, 성능저하의 요소들을 잘 캐치해야 돼. */
-/* 고정형은 float , position을 주로 썼지만, 반응형에선 flex와 grid를 주로 사용함. */
+
+/* 모든 디바이스 (All Device) */
+/* 공통 헤더 */
+.appHeader {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: var(--spacing-base) var(--spacing-lg);
+  gap: var(--spacing-base);
+}
+
+/* 공통 로고*/
+.logo {
+  width: 12.75rem; /* 204px */
+  height: 3.687rem; /* 59px */
+}
 
 
+.logo__link {
+  display: block;
+  /* a태그는 inline, 이걸 flexble한 컨텐츠로 바꾸려면 block을 주고 width와 height를 주자! */
+  width: 100%;
+  height: 100%;
+  background: url(./../images/webcafe-logo.png) no-repeat 0 0/100%;
+  /* /100% = background-size */
+}
 
-body{
-  background-color: var(--yellow);
-  /* font-size: 5vw; */
-  /* vw단위는 보기엔 이쁘지만, 유지보수 및 수정이 어려우니까 비추천한다고해. */
+/* 공통 멤버서비스 */
+.memberOnly {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  /* background-color: pink; */
+}
+
+/* 공통 검색 폼 */
+input[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+/* 설명스킵 뒤에 하신대 */
+
+.searchForm__group {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.searchForm__group .formInput {
+  margin-right: var(--spacing-xs);
+}
+
+
+.searchForm__group .formInput__input {
+  width: 100%;
+  height: 2rem;
+  border: 1px solid var(--silver);
+  background: var(--white);
+  border-radius: 0.25rem;
+  padding: var(--spacing-sxxs) var(--spacing-sm);
+}
+
+.button {
+  cursor: pointer;
+  height: 2rem;
+  border-radius: 0.25rem;
+  padding: var(--spacing-sxxs) var(--spacing-sm);
+  flex-shrink: 0;
+  /* =  flex: 0 0 auto; */
+  /* =  white-space: nowrap; */
+  font-size: var(--text-sm);
+}
+
+/* 버튼 3가지 design버전. 여기서 우린 fill을 적용함. */
+
+/* 버튼없애기 */
+.button--none {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  /* 투명 transparent */
+}
+
+/* 배경색있는버튼 */
+.button--fill {
+  background: var(--secondary-color);
+  color: var(--white);
+  border: 0;
+}
+
+/* 흰색버튼 */
+.button--outline {
+  background: transparent;
+  color: var(--secondary-color);
+  border: 1px solid currentColor;
 }
 
 
 
-/* 범위적용 240~768px까지. */
-@media (min-width:240px) and (max-width: 768px){
-  body{
-    background-color: var(--green);
-    
+/* 모바일 디바이스 (Mobile Device) */
+@media (min-width: 320px) and (max-width: 768px) {
+  /* 모바일 헤더 */
+  .appHeader {
+    background: var(--primary-color);
+    color: var(--white);
   }
-}
-
-
-
-/* 모바일 > 769 > 데스크탑 */
-/* min-width: ~px : 중단점 breakpoint. */
-@media (min-width: 769px){
-  body{
-    background-color: var(--blue);
-    
+  
+  /* 모바일 멤버서비스 */
+  .memberOnly {
+    order: -1;
+    font-size: var(--text-sm);
   }
+
+  /* 모바일 검색 폼 */
+  .searchForm__group .formInput {
+    flex-grow: 1;
+  }  
+  
+  
+  
 }
 
-/* 비디오는 부모크기에 따라 늘었다 줄었다 하는 상대적특성을 선언했다. */
-/* 그러면 부모의 크기가 고정형이 아닌 반응형이면 어떨까? */
-/*  */
-.news__videoContainer{
-  width:70%;
+
+
+
+/* 데스크탑 디바이스 (Desktop Device) */
+@media (min-width: 769px) {
+  /* 데스크탑 헤더 */
+  .appHeader {
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 데스크탑 로고 */
+  .logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* 화면에 absolute로 끌어올린 이후, 중간위치를 가는 좌표를 줌. */
+  }
+
+  /* 데스크탑 검색 폼 */
+ .searchForm__group {
+  justify-content: flex-end;
 }
 
-.book__cover{
-  width:30%;
-  background-color: pink;
+.searchForm__group .formInput {
+  width: 25rem;
+}
+
+
+
+
+
+
+}
+
+/* 고해상도 배경이미지 미디어쿼리 */
+/* 비트맵 이미지일경우, 배율마다 선언해줘야 됨. */
+/* 최소 디바이스의 픽셀비율이 2배율일 때, logo link에 링크이미지를바꿔줌을 선언 */
+/* 고해상도 배경이미지 미디어쿼리 */
+@media (-webkit-min-device-pixel-ratio: 2),
+  (min--moz-device-pixel-ratio: 2),
+  (-o-min-device-pixel-ratio: 2/1),
+  (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .logo__link {
+    background-image: url(./../images/webcafe-logo@2x.png);
+  }
 }
