@@ -1,3 +1,14 @@
+
+/* css 변수 */
+/* 하수와 고수차이점 */
+/* 하수: background: var(--dark-brown) */
+/* 고수: background: var(--primary-color) */
+/* primary color를 바꿔달라는 리액션을 받으면, 하수는 다 고쳐야 돼지 꿀꿀만,
+고수는 theme에서 수정한번만해주면됨.  */
+
+
+
+
 :root {
   --white: #fff;
   --black: #000;

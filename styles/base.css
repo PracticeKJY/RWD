@@ -7,10 +7,14 @@ body *::before,
 body *::after {
   box-sizing: border-box;
 }
+/* body 안에서만 border-box로 처리 */
 
-[class] {
+/* 클래스만 있을 때 마진을 없앰을 선언. */
+/* [class] {
   margin: 0;
-}
+} */
+
+
 
 a {
   color: inherit;
@@ -28,11 +32,15 @@ body {
 
 /* 유연한 미디어 */
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
+
+
+/* 웹페이지의 크기마다 유연하게 video의 크기도 유연하게 바꿔주는 선언 */
 video {
   width: 100%;
+  /* width의 initial value는 auto 값인데, 100%를 줌으로써 부모(news) 크기로 맞춰줌. */
   height: auto;
 }

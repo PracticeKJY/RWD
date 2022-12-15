@@ -17,7 +17,8 @@
   <link rel="stylesheet" href="./css/index.css" />
   <script src="./js/navigation.js" defer></script>
 </head>
-
+ <!-- 이름지정하는 방법:케밥?카멜? -->
+ <!--  -->
 <body>
   <header class="appHeader">
     <h1 class="logo">
@@ -45,6 +46,7 @@
         <span class="button--burgerBarTop"></span> 
         <span class="button--burgerBarMiddle"></span> 
         <span class="button--burgerBarBottom"></span>
+        <!-- "--"은 상태를 의미. -->
       </button>
     </div>
   </header>
@@ -56,6 +58,7 @@
       <li class="menu__item"><a href="/" class="menu__link">웹표준/웹접근성</a></li>
       <li class="menu__item"><a href="/" class="menu__link">묻고 답하기</a></li>
       <li class="menu__item"><a href="/" class="menu__link">자료실</a></li>
+      <!-- __ => BEM으로 네이밍. SASS에 작업할 때 편리하다는 장점이 있어서 사용했다고함. -->
     </ul>
   </nav>
   <main class="appMain">
