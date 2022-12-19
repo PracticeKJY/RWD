@@ -2,7 +2,7 @@
   // ESC 키를 누를 때 그리드 보이기 / 감추기
   document.addEventListener('keyup', function (event) {
     // ESC만으로 그리드를 켜고 끄는 기능을 사용하면, 다른 곳에서 ESC를 사용할 수 없는 문제. Shift + ESC로 문제 완화
-    if (event.shiftKey && (event.key === 'Escape' || event.keyCode === 27)) {
+    if (event.altKey && (event.key === '1' || event.keyCode === 27)) {
       document.body.classList.toggle('gridShow');
     }(function () {
       // ESC 키를 누를 때 그리드 보이기 / 감추기
@@ -21,7 +21,8 @@
       var firstItem = menu.querySelector('.menu__list li:first-child a');
       var lastItem = menu.querySelector('.menu__list li:last-child a');
       var video = document.querySelector('.news__video');
-    
+
+      // click = device의 의미 마우스만이 아닌 모든 device
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         btn.classList.toggle('is--active');

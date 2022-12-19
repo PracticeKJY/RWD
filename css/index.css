@@ -12,6 +12,7 @@
 /* 모든 디바이스 (All Device) */
 /* 공통 헤더 */
 .appHeader {
+  /* background: pink; */
   position: relative;
   display: flex;
   flex-flow: column nowrap;
@@ -104,16 +105,13 @@ input[type="search"] {
 }
 
 /* 공통 메인 콘텐츠 섹션 제목 */
-.appMain [class*="__title"] {
+.appMain [class*="__koTitle"] {
   margin-bottom: var(--spacing-base);
-  font-weight: 700;
+  font-weight: 400;
   font-size: var(--text-md);
+  background: blue;
 }
 
-.appMain [class*="__enTitle"] {
-  font-weight: 400;
-  font-size: var(--text-base);
-}
 
 .sprite {
   min-height: 3.75rem;

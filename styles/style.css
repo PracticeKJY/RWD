@@ -44,8 +44,9 @@
 input[type="search"] {
   -webkit-appearance: none;
   appearance: none;
+/* appearance를 추가해야 사파리등 다른 환경에도 설정한 폼 형태가 제대로 보임.
+(안하니까 radius가 생기는 등 이슈들이 발생됨.) */
 }
-/* 설명스킵 뒤에 하신대 */
 
 .searchForm__group {
   display: flex;
@@ -102,6 +103,119 @@ input[type="search"] {
 }
 
 
+/* 공통 메인 메뉴 */
+.menu__link {
+  display: block;
+  font-size: var(--text-md);
+  font-weight: 700;
+}
+
+/* 공통 메인 컨텐츠 */
+.appMain{
+    display:grid;
+    padding: var(--spacing-base) var(--spacing-lg);
+    gap:var(--spacing-base);
+}
+
+/* 공통 메인 컨텐츠 섹션 제목*/
+
+[class*="__title"]{
+  margin-bottom: var(--spacing-base);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  padding-left: 4rem;
+  /* margin주면 이미지랑 같이, 패딩을 주면 텍스트만!! */
+  
+}
+
+
+[class*="__koTitle"]{
+  font-size: var(--text-md);
+  font-weight: 700;
+}
+
+.sprite{
+  color:#000;
+  background: url(../images/sprite_main.png) no-repeat;
+  height:3.75rem;
+ 
+}
+
+.spriteNews{
+  background-position: 0 -230px;
+}
+.spriteTwitter{
+  background-position: 0 -460px;
+}
+.spriteFavorite{
+  background-position: 0 -345px;
+}
+.spriteBoard{
+  background-position: 0 -115px;
+}
+
+
+   /* 공통 새소식 */
+   .news{
+    /* background: yellow; */
+    grid-area: news;
+    /* grid-area: 1/1/2/13; */
+  }
+  
+/* 공통 추천서적 */
+ .book{
+  /* background: lightgreen; */
+  grid-area: book;
+  /* grid-area: 2/1/4/5; */
+ }
+
+/* 공통 게시판 */
+ .board{
+  /* background: lightsalmon; */
+  grid-area: board;
+  /* grid-area: 3/6/4/13; */
+}
+
+
+/* 공통 트위터 */
+.twitter{
+  /* background: burlywood; */
+  grid-area: twitter;
+  /* grid-area: 2/5/3/10; */
+}
+
+/* 공통 인기사이트 */
+.favorite{
+  /* background: skyblue; */
+  grid-area: favorite;
+  /* grid-area: 2/10/3/13; */
+}
+
+.accentBook{
+  color:var(--accent-book);
+}
+
+.accentNews{
+  color:var(--accent-news);
+}
+
+.accentBoard{
+  color:var(--accent-board);
+}
+
+.accentFavorite{
+  color:var(--accent-favorite);
+}
+
+.accentTwitter{
+  color:var(--accent-twitter);
+}
+
+
+
+
+
 
 /* 모바일 디바이스 (Mobile Device) */
 @media (min-width: 320px) and (max-width: 768px) {
@@ -109,6 +223,7 @@ input[type="search"] {
   .appHeader {
     background: var(--primary-color);
     color: var(--white);
+    /* position:relative; */
   }
   
   /* 모바일 멤버서비스 */
@@ -121,8 +236,217 @@ input[type="search"] {
   .searchForm__group .formInput {
     flex-grow: 1;
   }  
+
+
+   /* 모바일 메인메뉴 제어버튼 */
+  .buttonWrapper {
+    padding: var(--spacing--xxs);
+    /* 키보드로 접근할 때, 레이아웃을 맞춰주기 위해 선언*/
+    overflow: hidden;
+    position: absolute;
+    top: 3.75rem;
+    right: var(--spacing-lg);
+    /* ui작업할때 appheader에 padding 간격을 줬는데(lg만큼), 레이아웃의 규칙성을 맞추기 위해서 선언  */
+    transform: translate(-0.25rem, -0.25rem);
+    /* padding으로 접근할 때, 레이아웃을 맞춰주기위해서 패딩값만큼 선언 */
+  }
+
+  .button--burger {
+    position: relative;
+    width: 2rem;
+    /* 2rem = 32px */
+    height: 2rem;
+  }
+
+  .button--burger:focus {
+    outline-offset: 2px;
+    /* 키보드로 접근할 때 좀 더 넓게 해줌으로 식별하기 쉽게 하려고 선언함*/
+  }
+
+  .button--burgerBarTop,
+  .button--burgerBarMiddle,
+  .button--burgerBarBottom {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background: var(--white);
+    border-radius: 0.25rem;
+    left: 0;
+    transition: all 200ms;
+  }
+
+  .button--burgerBarTop {
+    top: 0;
+  }
+
+  .button--burgerBarMiddle {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .button--burgerBarBottom {
+    top: 100%;
+    transform: translateY(-100%);
+  }
   
+  .button--burger.is--active .button--burgerBarTop {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .button--burger.is--active .button--burgerBarMiddle {
+    transform: translate(-150%, -50%);
+  }
   
+  .button--burger.is--active .button--burgerBarBottom {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+
+  /* 모바일 메뉴 제어 버튼 시작 */
+  /* .buttonWrapper {
+    background: gold;
+    overflow: hidden;
+    position:absolute;
+  }
+
+  .button--burger {
+    width: 30px;
+    height: 30px;
+    background: blue;
+    position: relative;
+  }
+
+  [class*="button--burgerBar"] {
+    background: var(--white);
+    width: 100%;
+    height: 20%;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    transition: all 200ms;
+  }
+
+  .button--burgerBarTop {
+    top: 0;
+  }
+  .button--burgerBarMiddle {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .button--burgerBarBottom {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+
+  .is--active .button--burgerBarTop {
+    top: 50%;
+    transform: translate(0%, -50%) rotate(-45deg);
+  }
+  .is--active .button--burgerBarMiddle {
+    transform: translate(-100%, -50%);
+  }
+  .is--active .button--burgerBarBottom {
+    top: 50%;
+    transform: translate(0%, -50%) rotate(45deg);
+  } */
+
+  
+ /* 혼자실습했던과정.  
+ 
+  .buttonWrapper{
+    /* background: gold; 
+    position:absolute;
+    top: 40%;
+    right: 5%;
+    overflow: hidden;
+  }*/
+
+  /*.button--burger{
+    /* background: blue; 
+    width:30px;
+    height:30px;
+    position:relative;
+  
+  } */
+
+  /* [class*="button--burgerBar"]{
+
+    background: var(--white);
+    display:block; */
+    /* width:70%; */
+    /* height: 15%; */
+    /* margin:5px 0; /
+    border-radius: 10px;
+    position: absolute;
+    left:0;
+    width:100%;
+    height: 20%;
+  } */
+
+
+
+  /* 모바일 메뉴 제어 버튼 종료 */
+
+
+  /* 모바일 메인 메뉴 */
+  .menu__list {
+    background: var(--accent-opacity-color);
+    position: fixed;
+    /* fixed = viewport를 기준으로 block으로만듦 */
+    /* absolute= relative를 기준으로 block으로 만듦 */
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100vh;
+    /* vh= viewport단위 */
+    backdrop-filter: blur(4px);
+    /* 투명도를 지정해줌 */
+    padding: var(--spacing-lg);
+    transform: translateX(-150%);
+  }
+  
+  .menu__link{
+    padding: var(--spacing-xs);
+  }
+  
+  .menu__item {
+    border-bottom: 1px solid var(--silver);
+  }
+  
+  .menu.is--active .menu__list {
+    transform: none;
+}
+
+/* 모바일 메인 컨텐츠 */
+.appMain {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "book"
+    "news"
+    "board"
+    "favorite"
+    "twitter";
+}
+
+
+/*모바일 새소식
+.news{
+  grid-row: 1/2;
+  grid-column: 1/3;
+  /* =  grid-area: 1/1/2/3; 
+}
+
+.RecommendBook{
+  grid-column-start: 2;
+  grid-column-end: 2;
+} */
+
+
   
 }
 
@@ -155,12 +479,66 @@ input[type="search"] {
   width: 25rem;
 }
 
+  /* 데스크탑 메인메뉴 제어버튼 */
+  .button--burger {
+    display: none;
+  }
+
+  /* 데스크탑 메인메뉴 */
+  .menu{
+    background: var(--secondary-color);
+    padding: var(--spacing-base), var(--spacing-lg); 
+
+  }
+  
+  .menu__list{
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+
+  
+  .menu__link {
+    display: block;
+    /*inline이아니라 flex하게 inline처럼보이는거임 패딩을줘야됨.  */
+    padding: var(--spacing-md) var(--spacing-lg);
+    color:var(--white);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 0 var(--black), -1px -1px 0 var(--black);
+    
+  }
+
+  /* 데스크탑 메인 컨텐츠 */
+  
+    .appMain {
+      max-width: var(--container-width);
+      margin-left: auto;
+      margin-right: auto;
+      /* border: 5px solid red; */
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas:
+        "news news news news news news news news news news news news"
+        "book book book book twitter twitter twitter twitter twitter favorite favorite favorite"
+        "book book book book . board board board board board board board";
+  
+    }
 
 
 
 
 
+
+  
 }
+
 
 /* 고해상도 배경이미지 미디어쿼리 */
 /* 비트맵 이미지일경우, 배율마다 선언해줘야 됨. */
