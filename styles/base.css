@@ -14,8 +14,6 @@ body *::after {
   margin: 0;
 } */
 
-
-
 a {
   color: inherit;
   text-decoration: none;
@@ -38,11 +36,40 @@ img {
   height: auto;
 }
 
-
-
 /* 웹페이지의 크기마다 유연하게 video의 크기도 유연하게 바꿔주는 선언 */
 video {
   width: 100%;
   /* width의 initial value는 auto 값인데, 100%를 줌으로써 부모(news) 크기로 맞춰줌. */
   height: auto;
+}
+
+/* 가로가 100%일 때, 세로는 56.25% */
+
+/* 반응형 iframe */
+/* iframe에 담겨져 있는, appmain의 max width는 1024px.*/
+
+.iframeWrapper {
+  /* background-color: blueviolet; */
+  position: relative;
+  /* width: 100%; */
+}
+
+.iframeWrapper iframe {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 5px solid red;
+}
+
+.iframeRatio-16-9 {
+  padding-top: 56.25%;
+}
+
+.iframeRatio-21-9 {
+  padding-top: 42.857142857142855%;
+}
+
+.iframeRatio-4-3 {
+  padding-top: 75%;
 }

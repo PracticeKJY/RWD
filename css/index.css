@@ -112,7 +112,6 @@ input[type="search"] {
   background: blue;
 }
 
-
 .sprite {
   min-height: 3.75rem;
   padding-left: 4rem;
@@ -202,7 +201,7 @@ input[type="search"] {
 .iframeWrapper {
   position: relative;
   overflow: hidden;
-  width: 100%;
+  width: auto;
   height: 0 !important;
 }
 
@@ -373,7 +372,7 @@ input[type="search"] {
     position: absolute;
     top: 3.75rem;
     right: var(--spacing-lg);
-    transform: translate(0.25rem, -0.25rem;);
+    transform: translate(0.25rem, -0.25rem);
   }
 
   .button--burger {
